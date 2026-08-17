@@ -1,0 +1,2 @@
+export HF_ENDPOINT=https://hf-mirror.com
+export HUGGINGFACE_HUB_CACHE=/root/.cache/huggingface

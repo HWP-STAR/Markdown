@@ -1,0 +1,9 @@
+sudo bootctl install --esp-path=/boot/efi
+
+sudo bootctl install --esp-path=/boot/efi                                     (base)
+Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi" to "/boot/efi/EFI/systemd/systemd-bootx64.efi".
+Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi" to "/boot/efi/EFI/BOOT/BOOTX64.EFI".
+Random seed file /boot/efi/loader/random-seed successfully refreshed (32 bytes).
+Created EFI boot entry "Linux Boot Manager".
+
+reboot #ok

@@ -1,0 +1,110 @@
+查看当前网络连接名称：
+打开终端，输入以下命令查看所有连接：
+nmcli connection show
+
+前面加 https://ghproxy.net/ 就是国内加速
+
+import torch
+print(torch.cuda.is_available())
+print(torch.version.cuda)
+
+aria2c -c -s8 -x8 https://ghproxy.net/https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth -d hy3dpaint/ckpt
+
+sudo apt install aria2
+
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen-7B-Chat", trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B-Chat", trust_remote_code=True),
+
+from datasets import load_dataset
+
+# 从 Hub 加载 multi30k 数据集
+dataset = load_dataset("bentrevett/multi30k")
+
+
+# 查看数据集结构
+print(dataset) 
+# 输出示例: DatasetDict({ train: ..., validation: ..., test: ... })
+
+# 将完整的数据集保存到本地磁盘的指定路径
+dataset.save_to_disk("../../data_disk/multi30k")
+
+from datasets import load_from_disk
+
+HF_HUB_OFFLINE=1 python3 llm.py
+
+
+2. Use the real CLIP model from the config file path: /mnt/d/tongbingkai/point_llm/UniGS/data/ViT-B-16.pt
+3. Use the real Uni3D pretrained weights from: /mnt/d/tongbingkai/point_llm/UniGS/data/model.pt
+
+export HF_HUB_OFFLINE=1
+ export HF_ENDPOINT="https://hf-mirror.com" 
+
+
+
+
+pip install bitsandbytes accelerate
+pip install torch diffusers transformers accelerate safetensors
+
+# 直接从刚才保存的本地文件夹加载数据集
+local_dataset = load_from_disk("../../data_disk/multi30k")
+
+spaCy 模型
+
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM,MarianTokenizer
+from datasets import load_dataset
+
+
+disk_path="../../data_disk/opus-mt-en-de"
+tokenizer = MarianTokenizer.from_pretrained(disk_path)
+model = AutoModelForSeq2SeqLM.from_pretrained(disk_path)
+
+save_path = 'logs'  # 假设你的模型保存路径
+
+with open(f'{save_path}/training_log.txt', 'a', encoding='utf-8') as log_file:
+ # 将原本要打印的内容，通过 file=log_file 同时写入文件
+        print(f'Epoch {epoch:2d}/{epochs} | train_loss: {train_loss:.4f} | val_loss: {val_loss:.4f} | time: {elapsed:.1f}s', file=log_file)+
+        
+        
+ npm update -g opencode-ai #update       
+ # 查看所有会话（包含详细的历史会话信息）
+opencode session list
+
+
+打开你的项目
+按 Ctrl + Shift + P
+输入：Preferences: Open Workspace Settings (JSON)
+VSCode 会自动创建 .vscode/settings.json
+直接粘贴配置即可
+ 
+ 
+ ：英文情感数据集 IMDB
+直接用：
+python
+运行
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+（两种常见策略）
+如果你手里有一堆图片想分类，想用 VAE 帮忙，通常有两种玩法：
+冻结 Encoder，只训分类头（适合标签极少的情况）
+先拿大量没有标签的图片把一个 VAE 训练好。
+然后输入你有标签的图片，提取出 
+z
+z 。
+锁死 VAE 的参数不动，只训练后面新加的分类头。
+优点：即使只有几十张带标签的图，也能取得不错的效果（半监督学习）。
+整体微调（适合追求高精度的情况）
+把 VAE 的 Encoder 当作一个“超级特征提取器”初始化。
+接上分类头后，允许梯度传回 Encoder。
+用带标签的数据，同时更新 Encoder 和分类头的参数。
+优点：这样 Encoder 就会慢慢“醒悟”，逐渐丢弃那些对分类没用的背景信息，让 
+z
+z 变得更适合分类任务。
+
+| 时代 | 核心架构 | 代表模型 | 主要贡献 |
+|---|---|---|---|
+| 概率生成时代 | 概率潜在空间 | VAE | 奠定深度生成模型理论基础 |
+| 对抗生成时代 | CNN + GAN | StyleGAN、BigGAN | 实现高保真图像生成 |
+| 扩散模型时代 | U-Net + Diffusion | DDPM、Stable Diffusion | 超越 GAN，高质量、高稳定性 |
+| 文生图时代 | Diffusion + CLIP | DALL·E 2/3、Midjourney | 实现精准的文本控制生成 |
+| DiT 融合时代 | Transformer + Diffusion | Sora、Flux、SD3 | 统一架构，支持视频与多模态 |
+

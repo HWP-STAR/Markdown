@@ -1,0 +1,35 @@
+1. 原理
+两阶段级联架构：
+Shape 阶段 — 隐空间扩散模型 (DiT + Flow Matching)：
+输入图片 → DINOv2 提取条件特征 → DiT 在 VAE 隐空间去噪 50 步
+→ VAE 解码器 (CrossAttention) 查询体素网格 →  occupancy  logits 
+→ Marching Cubes → 三角网格
+Paint 阶段 — 多视角 2.5D UNet 扩散：
+网格简化 → UV 展开 → 渲染法线/位置图 → 多视角扩散 (PoseRoPE + 参考注意力)
+→ RealESRGAN 超分 → UV 反投影 → 空洞修补 → PBR 纹理网
+
+3. 能否作为 image/mesh 特征提取器？
+部分可以，但不推荐，原因如下：
+可以提取的特征：
+- 图像 → DINOv2 embedding (conditioner 直接可用)
+- 点云 → VAE latent (4096, 64) (通过 vae.encode())
+- 去噪后的 shape latent (通过 pipeline(image, output_type="latent"))
+问题在于：
+1. image 和 mesh 不在同一语义空间 — 图像特征来自 DINOv2 (1536 维)，mesh latent 来自 VAE (4096×64 维)，维度不同、训练目标不同，不能直接对比或检索
+2. VAE latent 是点云压缩，不是通用形状描述子 — 它专为 occupancy 重建训练，不具备语义级别的形状理解能力（不像 Objaverse-XL 训练的 triplet 模型）
+3. 没有统一的 image↔mesh embedding 对齐 — 模型没有像 CLIP 那样的跨模态对比学习目标，两个阶段的特征空间是相互独立的
+4. 不是设计为提取器 — 没有暴露中间层特征、没有 get_features() 接口、paint pipeline 返回的是文件路径
+
+
+为什么检索质量会差
+1. VAE latent 空间不是语义空间
+VAE 的训练目标是 occupancy 重建损失，不是语义相似度。两个语义相同的物体（比如两把椅子）可能因为几何细节不同而有相距很远的 VAE latent；两个几何相似的物体（椅子 vs 桌子腿）可能有相近的 latent 但语义完全不同。
+2. DiT 预测的是条件期望
+L_image = DiT(DINOv2(image))  # 从图片条件预测的 latent
+L_mesh  = VAE.encode(point_cloud)  # 对真实网格编码
+DiT 预测的是给定图像下所有可能形状的均值（flow matching 的确定性预测），它会模糊掉区分性细节。用 L_image 去检索 L_mesh 数据库，top-1 很可能是一个"平均化"的形状，而不是具体的语义匹配。
+3. 没有对比学习目标
+要好的跨模态检索，需要三元组损失或 InfoNCE：
+L = -log( exp(sim(L_image, L_mesh_pos)) / Σ exp(sim(L_image, L_mesh_neg)) )
+Hunyuan3D 的训练仅包含 重建损失 + KL 正则 + diffusion loss，没有任何跨模态对比对齐。
+

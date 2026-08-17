@@ -1,0 +1,59 @@
+视觉数据集
+数据集	路径
+Oxford-IIIT Pet	../../data/oxford-iiit-pet/
+Flickr8k	../../data/jxie___flickr8k/
+CIFAR-10	../../data/cifar-10-batches-py/
+CIFAR-100	../../data/cifar-100-python/
+MNIST	../../data/MNIST/raw/
+NLP 数据集Build·Big PickleOpenCode Zen
+数据集	路径26.1K (13%)
+WikiText	../../data/wikitext/
+Multi30k	../../data_disk/multi30k/
+模型权重（非数据集）
+模型	大小
+DeepSeek-R1-0528-Qwen3-8B	31 GB
+Stable Diffusion XL Base	14 GB
+opus-mt-en-de	1.2 GB
+SmolLM-135M	1.1 GB
+
+
+ssh  opencode -s ses_18e400bd0ffeBVv3j1MoRV1NAh
+以下是 /mnt/d 及系统中数据集的汇总：
+/mnt/d/HuangWeipeng
+数据集/项目	说明
+data/jxie___modelnet40/	ModelNet40 — 3D 点云分类标准数据集 (HuggingFace datasets)
+data/SeaLab___shape_net/	ShapeNet — 3D 形状数据集
+CLIP/	OpenAI CLIP 代码仓库及数据索引文件
+Hunyuan3D-2.1-main/	腾讯 Hunyuan3D 2.1 代码 + 模型权重 (ckpt/)
+point-net/	PointNet 实现 (src/models.py)
+transformer/	Transformer 相关实验 (模型/训练/数据代码)
+UniGS/, unigs_/, my_unigs/	UniGS 3D高斯泼溅项目（含work_dirs/、gaussian-splatting/子模块）
+/mnt/d/tongbingkai
+数据集/项目	说明
+WorldModel/	世界模型相关的大型数据集集合
+├─ Data/	机器人操作数据（观测图像）
+├─ Data_robotwin/	Robotwin 数据集 (~10GB+, tar.gz 分卷)
+├─ Data_SpatialVID/	空间视频理解数据（视频、深度图、标注）
+├─ tensorflow_datasets/	fractal20220817 (Open X-Embodiment)、droid_100、mimic_play
+├─ recon/	重建数据集 (recon_dataset.tar.gz)
+├─ nuSences/	nuScenes 相关
+├─ Wan2.1/, Wan2.2/	Wan 视频生成模型
+├─ vjepa2/, VLA-JEPA/	JEPA 类方法
+└─ lingbot-va/	LingBot 视频自编码器 (含 ckpt 权重)
+OnlineMed2D/	医学图像分割 (Med2D) 系列实验
+├─ SAM-Med2D/	SAM-Med2D (含 .pth 权重)
+├─ filter/, moe/, mlp/, ablation/, token-online/	MoE/Filter 在线分割变体 (含 OnlineMed2D.pth)
+└─ DiffusionDrive/	自动驾驶扩散模型
+nav/	具身导航
+├─ fast_vln/	快速视觉语言导航
+├─ NavDP/	导航决策策略 (含 ckpt)
+├─ InternNav/	InternNav 导航代码
+└─ modelscope_cache/datasets/valyentine___indoor_uav/	室内无人机数据集
+point_llm/	3D 点云大语言模型
+├─ UniGS_data_new/	UniGS 3DGS 数据（点云 .ply/.pkl、渲染视图）
+├─ scannet/	(ScanNet 目录空，待下载)
+├─ checkpoints/	模型检查点 (ckpt_modeC_ep*.pt)
+├─ PointCLIP_V2/, PointFM/, Find3D/, PatchAlign3D/, AffordSplat/	各类 3D VLM 子项目
+WorldM/	另一个世界模型项目
+/data/nuscenes
+- nuScenes v1.0 — 自动驾驶数据集（test/trainval 分卷，.tgz 压缩包
