@@ -43,3 +43,6 @@ git rm --cached 文件名 # 取消追踪
 
 vim .gitignore
 # 或者 nano .gitignore，忽略文件
+
+git remote add origin # 添加仓库
+git push -u origin main #推送main分支
