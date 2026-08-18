@@ -326,3 +326,6 @@ NanoVSR 同时处理 chunk N-1
 - 每帧单独做一次 SegFormer
 - 不做 EMA 平滑
 - 不做跨帧稳定
+
+
+decode/resize -> SegFormer 分割 -> mask 时间平滑/插值 -> LongLive/VACE try-on -> 写 try-on/mask 视频 -> NanoVSR 4x 超分

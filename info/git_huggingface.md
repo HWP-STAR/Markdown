@@ -43,6 +43,17 @@ git rm --cached 文件名 # 取消追踪
 
 vim .gitignore
 # 或者 nano .gitignore，忽略文件
+文件夹/
+**/file_name # 忽略任意目录下的该文件
 
 git remote add origin # 添加仓库
 git push -u origin main #推送main分支
+
+# 使用ssh仓库
+ssh-keygen -t ed25519 -C "你的邮箱" # 生成
+cat ~/.ssh/id_ed25519.pub # 复制上传公钥
+
+
+git remote add origin 仓库 # 添加
+git remote set-url origin 仓库 # 修改remote仓库
+git remote -v #查看
