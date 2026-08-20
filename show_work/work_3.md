@@ -84,7 +84,8 @@ SegFormer batch 化保留，并进一步做 TensorRT/ONNX
 - 时序连续性还够用
 
 模块 2：SegFormer 深度优化
-这是最值得动的一层。
+ONNX（中间格式）,:TensorRT（优化编译器）,TRT Runtime（执行器）
+
 具体做法：
 1. 不再逐帧单独跑 SegFormer
 2. 改成 chunk 内 batch 推理
