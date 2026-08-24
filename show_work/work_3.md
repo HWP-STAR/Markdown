@@ -330,3 +330,86 @@ NanoVSR 同时处理 chunk N-1
 
 
 decode/resize -> SegFormer 分割 -> mask 时间平滑/插值 -> LongLive/VACE try-on -> 写 try-on/mask 视频 -> NanoVSR 4x 超分
+
+LatestFrameSlot 是容量为 1 的“最新帧槽”。
+这意味着：
+- 捕获线程一直读流，不会因为模型慢而堵住 RTSP/RTMP socket。
+- 如果模型处理不过来，旧帧会被新帧覆盖。
+- 它追求实时性，不追求每一帧都处理。
+- frames_superseded 会统计被覆盖的旧帧数量
+
+
+# 测试
+/root/autodl-tmp/VTO/scope/.codex-portrait-deploy/releases/20260822T142134-3b2711421bce/scripts/portrait_tryon_stream_service.py 实时服务
+
+/root/autodl-tmp/VTO/scope/tryon_script/segformer_mask_tryon_streaming_portrait_nanovsr.py 离线脚本
+
+我已经配好环境，不要下载，使用现有环境，参考vithd-000016-longlive-vace-tryon.md和local-startup.md的环境使用
+
+/root/autodl-tmp/VTO/scope/tryon_script/portrait_tryon_stream_service.py 实时处理服务
+
+
+# 模型
+具体模型：
+SegFormer:
+  /root/autodl-tmp/VTO/scope/hf_models/segformer_b2_clothes
+
+LongLive/VACE:
+  /root/autodl-tmp/VTO/scope/.models/LongLive-1.3B/models/longlive_base.pt
+  /root/autodl-tmp/VTO/scope/.models/LongLive-1.3B/models/lora.pt
+  /root/autodl-tmp/VTO/scope/.models/WanVideo_comfy/Wan2_1-VACE_module_1_3B_bf16.safetensors
+  /root/autodl-tmp/VTO/scope/.models/WanVideo_comfy/umt5-xxl-enc-fp8_e4m3fn.safetensors
+  /root/autodl-tmp/VTO/scope/.models/Wan2.1-T2V-1.3B/google/umt5-xxl
+
+NanoVSR:
+  /root/autodl-tmp/VTO/scope/nanovsr/checkpoints/nanovsr_644k.pth
+
+
+
+脚本: /root/autodl-tmp/VTO/scope/.codex-portrait-deploy/releases/20260822T142134-3b2711421bce/scripts/portrait_tryon_stream_service.py
+监听: http://127.0.0.1:6006
+
+OpenCV 拉流/读帧
+  -> SegFormer clothes parsing 生成人体/衣服区域 mask
+  -> mask 插值、形态学处理、VACE 输入构造
+  -> LongLivePipeline(LongLive-1.3B + LoRA + Wan2.1 VACE)
+  -> NanoVSR 4x 超分
+  -> FFmpeg 写文件或推流
+
+
+   服务没有使用衣服 caption，离线脚本通常会用 caption_qwen
+离线脚本
+
+
+要真正定位，使用3个视频，做一个严格 A/B：
+
+同一个视频
+
+同一件衣服
+
+同一个 resize_mode
+
+同一个 prompt
+
+同一个 mask_mode
+
+同一个 chunk_size/overlap
+
+同一个 mask_ema_alpha
+
+同一个 output fps
+
+同一份 helper 代码
+
+然后告诉我输出视频位置，不要下载其他，使用配置好的环境，完成后告诉我
+
+
+核心改动：
+processor close 不再丢 input_queue 中已 accepted 的帧
+prompt 改成参考离线脚本格式
+服务默认按衣服文件名读取 caption_qwen.json
+强制 resize_mode=384x384
+强制 enable_nanovsr=true
+强制 mask_every=1，即每帧生成 mask
+强制 drop_when_full=false
+保留 FIFO，不覆盖旧帧

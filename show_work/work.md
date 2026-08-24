@@ -515,3 +515,4 @@ python --version
 
 我已经配好环境，不要下载，使用现有环境，参考scope/docs/vithd-000016-longlive-vace-tryon.md和scope/docs/local-startup.md的环境使用
 下载/缓存都在当前目录，系统盘空间不够，网络不好使用镜像
+进度如何，告诉我具体境况后继续完成
