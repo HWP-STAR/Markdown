@@ -78,3 +78,49 @@ for 后使用; 表示不进行处理
 四舍五入，中间值就向偶数（末尾是0）
 
 运算： 对齐统一指数，后二进制直接算，*2^n or *2^-n,就是位移操作（左右位移）
+
+
+# 头文件 
+// math_utils.h
+#ifndef MATH_UTILS_H  //自己定义的符号
+#define MATH_UTILS_H
+
+int add(int a, int b);
+int sub(int a, int b);  //对外的函数接口
+
+#endif
+
+编译：把所有的.c文件一起编译
+
+# 静态变量
+- 函数内的静态局部变量
+作用域：仅在函数内部可见
+生命周期：程序整个运行期间都存在
+只初始化一次，函数调用结束后值不会消失
+
+- 文件内的静态全局变量/函数
+只在文件内使用，外部无法访问
+
+# 初始化
+使用“=” 来显示赋值，可以多个一起初始化
+
+char pattern[] = "ould ";
+字符串初始化等价：
+char pattern[] = { 'o', 'u', 'l', 'd'};
+
+# 条件编译
+
+#ifdef DEBUG // 有定义就编译
+    printf("调试模式开启\n");
+
+
+#endif //结束
+
+# 防止重复
+#ifndef MYLIB_H
+#define MYLIB_H
+
+void foo(void);
+int bar(int x);
+
+#endif
