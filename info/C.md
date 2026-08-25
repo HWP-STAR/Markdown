@@ -110,7 +110,7 @@ char pattern[] = { 'o', 'u', 'l', 'd'};
 
 # 条件编译
 
-#ifdef DEBUG // 有定义就编译
+#ifdef DEBUG // 有定义就编译,之前要使用define定义
     printf("调试模式开启\n");
 
 
@@ -124,3 +124,6 @@ void foo(void);
 int bar(int x);
 
 #endif
+
+# 指针
+& 取地址
