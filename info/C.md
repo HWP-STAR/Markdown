@@ -18,6 +18,7 @@ ctrl+d 代表 EOF
 # ASCII
 '0' is 48，'1' is 49 ，一段是连续的,'A' is 65 ,'a' is 97
 %d is int, %c is char
+%zu is size_t
 
 # printf
 printf 的第一个参数必须是 const char *（格式字符串），而你传了一个 int，只能打印string/char
@@ -92,7 +93,7 @@ int sub(int a, int b);  //对外的函数接口
 
 编译：把所有的.c文件一起编译
 
-# 静态变量
+# 静态变量 static
 - 函数内的静态局部变量
 作用域：仅在函数内部可见
 生命周期：程序整个运行期间都存在
@@ -150,3 +151,37 @@ char * 正好就是这个起始地址，指针就是一个起始位置
 总位数​
 32 位（4 字节）
 64 位（8 字节）
+
+# 多个 .c 文件共享同一个 .h 文件，就能保证接口一致。
+
+用一个.h文件/多个.h文件都可以，没有太大区别，只是方便管理，编译不用管.h文件
+
+# 多维数组
+按行存储
+
+二维数组：int a[][];
+指针数组：char *b[]; //空的要指定大小，有初始化就不用指定大小
+
+# 传入参数
+int main(int argc, char *argv[])
+
+argc
+argument count，参数个数
+argv
+argument vector，参数数组（char * 指针数组） 都是字符str
+
+第一个参数是程序名，实际参数是argc-1,argv[0] 是程序名本身,用空格来区分不同参数（空格是分割符号
+
+# 结构体
+定义 struct name {};
+初始化 struct name 变量={}; //直接赋值
+
+# sizeof 对象/表达式 或 sizeof(类型名)
+# typedef 类型定义（可以自己组合来定义类型）
+eg: typedef char* string; //定义string类型
+
+# 位字段
+struct 结构体名 {
+    unsigned int 成员名 : 位数;
+};
+%u 表示unsigned 
