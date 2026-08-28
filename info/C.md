@@ -185,3 +185,14 @@ struct 结构体名 {
     unsigned int 成员名 : 位数;
 };
 %u 表示unsigned 
+
+# >< | 操作
+
+# scanf("格式控制字符串", 地址列表);
+和printf（）配对
+
+# 函数声明
+写在 main() 外面​ → 全局作用域 → 整个文件都能用
+写在 main() 里面​ → 局部作用域 → 只有 main() 里能用
+
+eg：    void filecopy(FILE *,FILE *);  //函数声明
