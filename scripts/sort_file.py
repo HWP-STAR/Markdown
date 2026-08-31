@@ -120,7 +120,7 @@ class FileOrganizer:
 # 使用示例
 if __name__ == "__main__":
     # 要整理的目录路径
-    directory_path = "./Downloads"  # 修改为你的目录
+    directory_path = "/home/my_llm/Downloads"  # 修改为你的目录
     
     try:
         # 创建整理器实例
