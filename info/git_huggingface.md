@@ -57,3 +57,13 @@ cat ~/.ssh/id_ed25519.pub # 复制上传公钥
 git remote add origin 仓库 # 添加
 git remote set-url origin 仓库 # 修改remote仓库
 git remote -v #查看
+
+# 远程有改变，拉取合并后push
+
+# 1. 拉取远程代码并变基
+git pull --rebase origin master
+# 2. 如果遇到冲突，解决冲突后执行：
+# git add <冲突文件>
+# git rebase --continue
+# 3. 重新推送
+git push origin master
