@@ -67,3 +67,66 @@ git pull --rebase origin master
 # git rebase --continue
 # 3. 重新推送
 git push origin master
+
+
+git remote add origin git@github.com:HWP-STAR/miniGPT.git
+git branch -M main
+git push -u origin main
+
+1. 查看本地所有分支（你电脑上的）
+bash
+运行
+git branch
+看远程仓库的分支（GitHub/GitLab/ 码云 上的）
+bash
+运行
+git branch -r  or -a
+
+
+# 1. 切到主分支
+git checkout main
+
+# 2. 新建并切换到你的功能分支
+git checkout -b feature/login
+
+# 3. 写代码后提交
+git add .
+git commit -m "完成登录功能"
+
+# 4. 第一次推送到远程（必须加 -u）
+git push -u origin feature/login
+
+# 5. 要合并时：切回主分支 → 合并 → 推送
+git checkout main
+git merge feature/login
+git push
+
+
+# 注释用 #
+# 忽略文件夹（末尾加 /）
+node_modules/
+dist/
+build/
+__pycache__/
+logs/
+
+# 忽略文件
+.env
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 忽略所有目录下的某种文件
+*.swp
+*.swo
+
+# 排除（不忽略）某个文件
+# !important.log
+
+git reset HEAD -- FILE_name
+
+# 把仓库复位到某个提交的状态: git reset 提交的哈希值.
+从当前提交新建分支并切换: git checkout -b 分支名.
+切换到分支: git checkout 分支名.
+删除分支: git branch -D 分支名.

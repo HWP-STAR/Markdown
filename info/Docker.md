@@ -113,11 +113,11 @@ docker rm 容器名                  # 删除容器
 
 这里其实出现了两个概念: “镜像” 和 “容器”. 你可以把它们理解为: 前者是一个硬盘, 里面装好了操作系统, 但它是静态的, 你不能直接拿它来运行. 后者是一台电脑, 里面安装了硬盘, 就能运行对应的操作系统
 
-docker run -it --rm maxxing/compiler-dev bash
+# docker run -it --rm maxxing/compiler-dev bash
  #用完就删除
 
 使用了 -it 参数, 这个参数会开启容器的 stdin 以便我们输入 (-i), 同时 Docker 会为容器分配一个终端 (-t).
 
-# docker run -it --rm -v /home本地路径:/root/compiler maxxing/compiler-dev bash
+# docker run -it --rm -v /home/my_llm/work/compiler:/root/compiler maxxing/compiler-dev bash
 
 在许多情况下, 我们需要让 Docker 容器访问宿主系统中的文件

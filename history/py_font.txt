@@ -1,2 +1,0 @@
-plt.rcParams['font.sans-serif'] = ['Noto Sans CJK JP', 'DejaVu Sans']
-plt.rcParams['axes.unicode_minus'] = False
