@@ -175,3 +175,39 @@ scope用于说明 commit 影响的范围，比如数据层、控制层、视图�
 subject(必须)
 
 subject是commit目的的简短描述，不超过50个字符。
+
+# 撤销 `git add .`
+git reset
+
+# 创建branch
+基于当前 HEAD（cc37fc6）创建新分支
+git checkout -b task5/anti_noise_filter
+
+切回 master，把 master“回退”到 91b470b
+git checkout master
+git reset --hard 91b470b
+
+- `git reset --mixed 91b470b`（不带参数）：**移动 HEAD + 重置暂存区，工作区不动** **但电脑磁盘上的文件内容不动**。
+- `git reset --hard 91b470b`：**移动 HEAD + 重置暂存区 + 强制覆盖工作区**
+区别只在于**暂存区、本地文件（工作区）怎么处理**
+
+# 可以切到任意历史 commit
+git checkout <commit_id>  # 切到指定 commit
+
+合并 main
+git merge main # 合并main到当前分支
+git branch # 查看分支 ，-a 看所有
+git branch -d 分支名 #  删除本地分支，-D强制删除
+git push origin --delete branchB # 删除远程分支
+git branch -m old-name new-name #改名字
+有冲突：
+手动修改 # 删除所有冲突标记（<<<<<<<、=======、>>>>>>>）
+git add 冲突文件
+git commit #完成合并提交，Git 会自动生成合并提交信息
+
+# 每个分支默认是独立的，当 master（或现在的 main）分支更新后，其他分支不会自动同步这些更新。
+
+Git 的合并本质上是“增量合并”
+main 相对于 base 的变更（diff）
+当前分支相对于 base 的变更（diff）
+把这两组“增量变更”合并到一起

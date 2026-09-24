@@ -225,3 +225,8 @@ sudo apt install libeigen3-dev
 pkg-config = **库参数查询工具**
 
 eg：pkg-config --modversion eigen3
+
+# 头文件本身不会被“编译成目标文件”，但可以被“参与编译过程”
+.h：C / 传统 C++ 风格
+.hpp：纯 C++ 风格（强调 C++ 特性）
+
