@@ -38,3 +38,8 @@ Meta AI（内嵌Facebook/Instagram）
 
 9. xAI（马斯克）
 11. Microsoft（AI基础设施巨头）
+
+
+# gui agent
+
+npx @deepseek-ai/dsh web

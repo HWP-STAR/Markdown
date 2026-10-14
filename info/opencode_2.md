@@ -34,3 +34,6 @@ npm i -g opencode-ai # opencode
 npm install -g ccswitch-tui
 
 chsh -s /usr/bin/fish   #将 Fish 设置为默认 Shell
+
+# opencode upgrade #升级
+opencode -v # 查看版本
