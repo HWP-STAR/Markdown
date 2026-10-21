@@ -1,15 +1,4 @@
-echo $DASHSCOPE_API_KEY
-export DASHSCOPE_API_KEY="sk-ws-H.EIYRIYP.Rei6.MEUCIQDW8JqABOTbbZ6caT1pQl6MqRzUMq64I5VNKAMSIPaWVwIgU2r2EGuGQ0gQ6wazBANCyE-Yy-YqoMFWnOOKd1EcjqY"
-wan2.1 api
 
-demo 图片已成功生成，尺寸为 1536x512，包含人物、mask/遮挡预览、服装、试穿
-
-运行 Gradio demo：
-cd /root/autodl-tmp/VTO/CatV2TON/CatVTON
-HF_ENDPOINT=https://hf-mirror.com python app.py \
-  --output_dir="resource/demo/output" \
-  --mixed_precision="bf16" \
-  --allow_tf32
 
   HF_HUB_OFFLINE=1 python app.py \
   --output_dir="resource/demo/output" \

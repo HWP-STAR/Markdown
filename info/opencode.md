@@ -22,15 +22,19 @@ npm -v   # 查看 npm 版本
 bash
 
 npm config set registry https://registry.npmmirror.com
-
-
-验证配置是否生效
-bash
-
+或
+npm config set registry https://mirrors.cloud.tencent.com/npm/
 npm config get registry
 
+
 npm install -g @openai/codex # codex
-npm i -g opencode-ai # opencode
-npm install -g ccswitch-tui
+npm install -g opencode-ai # opencode
+npm install -g @opencode/cli@latest
+
+npm cache clean # 清除
+
 
 chsh -s /usr/bin/fish #将 Fish 设置为默认 Shell
+# 升级
+opencode upgrade 
+opencode -v

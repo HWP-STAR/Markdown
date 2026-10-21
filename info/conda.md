@@ -27,4 +27,4 @@ conda deactivate
 conda remove -n myproj --all
 
 # 克隆环境
-conda create --name myproj_copy --clone myproj
+conda create --name myproj_copy --clone new10

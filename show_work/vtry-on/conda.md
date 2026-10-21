@@ -1,7 +1,7 @@
 
 
 # 标准方法
-帮我跑通项目，进行简单的demo演示，网络不好就使用镜像服务（如：使用镜像
+帮我跑通项目，使用conda创建虚拟环境（要告诉我如何使用），进行简单的demo演示，网络不好就使用镜像服务（如：使用镜像
 - PyPI/uv：清华源 https://pypi.tuna.tsinghua.edu.cn/simple
 - npm：https://registry.npmmirror.com
 - HuggingFace：https://hf-mirror.com

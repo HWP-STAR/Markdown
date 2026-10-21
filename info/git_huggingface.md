@@ -211,3 +211,6 @@ Git 的合并本质上是“增量合并”
 main 相对于 base 的变更（diff）
 当前分支相对于 base 的变更（diff）
 把这两组“增量变更”合并到一起
+
+# github zip
+GitHub 的 “Download ZIP”​ 下载的是代码快照，解压后没有 .git 目录，也没有提交历史、分支、远程配置

@@ -28,12 +28,12 @@ lake --version # 类似npm
 # lake 是 Lean 4（形式化数学/定理证明语言）的构建工具
 lake new my_project #创建项目
 
-# Mathlib
+# Mathlib，不是matlab,没什么关系
 在项目根目录下的 lakefile.lean 文件中
 require mathlib from git
   "https://mirror.sjtu.edu.cn/git/lean4-packages/mathlib4"
 
-  # 学习
-  elan --version
+# 学习
+elan --version
 lake --version
 lean --version
