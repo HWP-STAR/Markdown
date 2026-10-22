@@ -1,3 +1,18 @@
+# 安装steam
+一般通过官网的deb安装（安装的是启动器，不是客户端本体），如有问题：
+# 1. 启用 i386 32位架构支持
+sudo dpkg --add-architecture i386
+
+# 2. 更新软件源
+sudo apt update
+
+# 3. 手动安装图中缺失的核心依赖（或直接重装 steam）
+sudo apt install libc6:i386 libgl1:i386 libegl1:i386 libgbm1:i386 libgl1-mesa-dri:i386 steam-libs-i386:i386
+
+# 若仍有依赖断裂，尝试自动修复
+sudo apt --fix-broken install
+
+
 # 潜渊症
 f3 控制台
 enablecheats # 开启作弊
